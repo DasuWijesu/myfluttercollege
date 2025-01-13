@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(
       MaterialApp(
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           brightness: Brightness.light,
           primaryColor: Colors.blue,
@@ -26,19 +27,35 @@ class _MyAppState extends State<MyApp> {
   double? studentGPA;
 
   getStudentName(name) {
-    this.studentName = name;
+    studentName = name;
   }
 
   getStudentID(id) {
-    this.studentID = id;
+    studentID = id;
   }
 
   getStudyProgramID(programID) {
-    this.studyProgramID = programID;
+    studyProgramID = programID;
   }
 
   getStudentGPA(gpa) {
-    this.studentGPA = double.parse(gpa);
+    studentGPA = double.tryParse(gpa);
+  }
+
+  createData() {
+    print("Created");
+  }
+
+  readData() {
+    print("read");
+  }
+
+  updateData() {
+    print("update");
+  }
+
+  deleteData() {
+    print("delete");
   }
 
   @override
@@ -106,6 +123,68 @@ class _MyAppState extends State<MyApp> {
                     getStudentGPA(gpa);
                   },
                 ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  //RaisedButton(onPressed:null) The RaisedButton widget has been deprecated in Flutter.
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green, //Button backgrond color
+                      foregroundColor: Colors.white, //text color
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                    ),
+                    onPressed: () {
+                      //action whem the button is clicked
+                      createData();
+                    },
+                    child: Text("Create"),
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue, //Button backgrond color
+                      foregroundColor: Colors.white, //text color
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                    ),
+                    onPressed: () {
+                      //action whem the button is clicked
+                      readData();
+                    },
+                    child: Text("Read"),
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.orange, //Button backgrond color
+                      foregroundColor: Colors.white, //text color
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                    ),
+                    onPressed: () {
+                      //action whem the button is clicked
+                      updateData();
+                    },
+                    child: Text("Update"),
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.red, //Button backgrond color
+                      foregroundColor: Colors.white, //text color
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                    ),
+                    onPressed: () {
+                      //action whem the button is clicked
+                      deleteData();
+                    },
+                    child: Text("Delete"),
+                  )
+                ],
               )
             ],
           ),
