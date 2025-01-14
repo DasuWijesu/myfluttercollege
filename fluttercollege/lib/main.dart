@@ -1,9 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 void main() async {
-    WidgetsFlutterBinding.ensureInitialized();
-    await Firebase.initializeApp();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -49,6 +50,23 @@ class _MyAppState extends State<MyApp> {
 
   createData() {
     print("Created");
+
+    DocumentReference documentReference =
+        FirebaseFirestore.instance.collection("MyStudents").doc(studentName);
+
+    //create Map
+    Map<String, dynamic> students = {
+      "studentName": studentName,
+      "studentID": studentID,
+      "studyProgramID": studyProgramID,
+      "studentGPA": studentGPA
+    };
+
+    documentReference.set(students).whenComplete(() {
+      print("$studentName created");
+    }).catchError((e) {
+    print("Error: $e");
+  });
   }
 
   readData() {
