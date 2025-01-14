@@ -2,7 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -51,7 +50,7 @@ class _MyAppState extends State<MyApp> {
 
   createData() {
     DocumentReference documentReference =
-        FirebaseFirestore.instance.collection("MyStudents").doc(studentName);
+        FirebaseFirestore.instance.collection("MyStudents").doc(studentID);
 
     //create Map
     Map<String, dynamic> students = {
@@ -70,7 +69,7 @@ class _MyAppState extends State<MyApp> {
 
   readData() {
     DocumentReference documentReference =
-        FirebaseFirestore.instance.collection("MyStudents").doc(studentName);
+        FirebaseFirestore.instance.collection("MyStudents").doc(studentID);
 
     documentReference.get().then((datasnapshot) {
       if (datasnapshot.exists) {
@@ -94,7 +93,7 @@ class _MyAppState extends State<MyApp> {
 
   updateData() {
     DocumentReference documentReference =
-        FirebaseFirestore.instance.collection("MyStudents").doc(studentName);
+        FirebaseFirestore.instance.collection("MyStudents").doc(studentID);
 
     //create Map
     Map<String, dynamic> students = {
@@ -112,7 +111,12 @@ class _MyAppState extends State<MyApp> {
   }
 
   deleteData() {
-    print("delete ");
+    DocumentReference documentReference =
+        FirebaseFirestore.instance.collection("MyStudents").doc(studentID);
+
+    documentReference.delete().whenComplete((() {
+      print("$studentName deleted");
+    }));
   }
 
   @override
