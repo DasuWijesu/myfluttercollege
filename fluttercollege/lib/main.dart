@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -49,8 +50,6 @@ class _MyAppState extends State<MyApp> {
   }
 
   createData() {
-    print("Created");
-
     DocumentReference documentReference =
         FirebaseFirestore.instance.collection("MyStudents").doc(studentName);
 
@@ -65,12 +64,32 @@ class _MyAppState extends State<MyApp> {
     documentReference.set(students).whenComplete(() {
       print("$studentName created");
     }).catchError((e) {
-    print("Error: $e");
-  });
+      print("Error: $e");
+    });
   }
 
   readData() {
-    print("read");
+    DocumentReference documentReference =
+        FirebaseFirestore.instance.collection("MyStudents").doc(studentName);
+
+    documentReference.get().then((datasnapshot) {
+      if (datasnapshot.exists) {
+        //Access data safty
+        Map<String, dynamic>? data =
+            datasnapshot.data() as Map<String, dynamic>?;
+
+        if (data != null) {
+          print("Student Name : ${data['studentName']})");
+          print("Student ID : ${data['studentID']})");
+          print("Study Program : ${data['studyProgramID']})");
+          print("Student GPA : ${data['studentGPA']})");
+        } else {
+          print("Document dose not exist");
+        }
+      }
+    }).catchError((e) {
+      print("Error: $e");
+    });
   }
 
   updateData() {
