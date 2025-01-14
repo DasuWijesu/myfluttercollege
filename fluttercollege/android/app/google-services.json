@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "804045796488",
+    "firebase_url": "https://myfluttercollege-979ac-default-rtdb.firebaseio.com",
+    "project_id": "myfluttercollege-979ac",
+    "storage_bucket": "myfluttercollege-979ac.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:804045796488:android:923ff2406d2a39229c9b3d",
+        "android_client_info": {
+          "package_name": "com.example.fluttercollege"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmXq-pbq7_Miapmwqfmtbo_sVnSbbTlS4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

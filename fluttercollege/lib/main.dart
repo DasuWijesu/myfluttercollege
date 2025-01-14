@@ -55,7 +55,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   deleteData() {
-    print("delete");
+    print("delete ");
   }
 
   @override
