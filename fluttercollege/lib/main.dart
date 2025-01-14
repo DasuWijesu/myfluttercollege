@@ -1,21 +1,26 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(
-      MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          brightness: Brightness.light,
-          primaryColor: Colors.blue,
-          colorScheme: ColorScheme.fromSwatch(
-            primarySwatch: Colors.blue,
-          ).copyWith(
-            secondary: Colors.cyan,
-          ),
+void main() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp();
+  runApp(
+    MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        brightness: Brightness.light,
+        primaryColor: Colors.blue,
+        colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: Colors.blue,
+        ).copyWith(
+          secondary: Colors.cyan,
         ),
-        //'accentColor : Colors.cyan' As of Flutter 2.5, accentColor has been deprecated.
-        home: MyApp(),
       ),
-    );
+      //'accentColor : Colors.cyan' As of Flutter 2.5, accentColor has been deprecated.
+      home: MyApp(),
+    ),
+  );
+}
 
 class MyApp extends StatefulWidget {
   @override
