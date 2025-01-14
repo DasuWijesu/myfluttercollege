@@ -93,7 +93,22 @@ class _MyAppState extends State<MyApp> {
   }
 
   updateData() {
-    print("update");
+    DocumentReference documentReference =
+        FirebaseFirestore.instance.collection("MyStudents").doc(studentName);
+
+    //create Map
+    Map<String, dynamic> students = {
+      "studentName": studentName,
+      "studentID": studentID,
+      "studyProgramID": studyProgramID,
+      "studentGPA": studentGPA
+    };
+
+    documentReference.set(students).whenComplete(() {
+      print("$studentName updated");
+    }).catchError((e) {
+      print("Error: $e");
+    });
   }
 
   deleteData() {
